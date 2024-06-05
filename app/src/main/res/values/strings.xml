@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LaserPenV1</string>
+    <string name="accessibility_service_description">Laser Pointer Accessibility Service</string>
+</resources>
