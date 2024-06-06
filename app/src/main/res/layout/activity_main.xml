@@ -1,35 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <org.opencv.android.JavaCameraView
-        android:id="@+id/cameraView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Switch
+            android:id="@+id/overlay_permission_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="悬浮窗权限" />
+
+        <Switch
+            android:id="@+id/camera_permission_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="相机权限" />
+
+        <Switch
+            android:id="@+id/accessibility_permission_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="辅助功能服务权限" />
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="启动应用"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <!-- 添加视图的其他内容，比如相机视图 -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:layout_below="@+id/start_button"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/coordinateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Coordinates: "
-        android:textColor="#FFFFFF"
-        android:background="#80000000"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:visibility="visible"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
-    <Button
-        android:id="@+id/start_pip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start PiP"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+            <TextView
+                android:id="@+id/coordinateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="602dp"
+                android:background="#80000000"
+                android:padding="10dp"
+                android:text="Coordinates: "
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <org.opencv.android.JavaCameraView
+            android:id="@+id/cameraView"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|center_horizontal"
+            android:visibility="visible" />
+    </FrameLayout>
+
 </RelativeLayout>

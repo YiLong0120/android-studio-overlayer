@@ -1,0 +1,39 @@
+<!-- overlay_layout.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 子布局以背景色为黑色并放置在中间正上方 -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#80000000"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:padding="10dp">
+
+        <!-- 摄像头视图 -->
+        <org.opencv.android.JavaCameraView
+            android:id="@+id/overlay_camera_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="visible" />
+
+        <!-- 文本视图 -->
+        <TextView
+            android:id="@+id/overlay_coordinateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overlay_camera_view"
+            android:layout_marginTop="10dp"
+            android:background="#80000000"
+            android:padding="10dp"
+            android:text="Coordinates: "
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

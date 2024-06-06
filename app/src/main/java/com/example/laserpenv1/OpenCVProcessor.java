@@ -1,7 +1,11 @@
 package com.example.laserpenv1;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.PixelFormat;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.core.Core;
@@ -20,10 +24,12 @@ public class OpenCVProcessor implements CameraBridgeViewBase.CvCameraViewListene
     private static final String TAG = "OpenCVProcessor";
     private TextView coordinateTextView;
     private Context context;
+    private TouchOverlayView touchOverlayView;
 
     public OpenCVProcessor(Context context, TextView textView) {
         this.context = context;
         this.coordinateTextView = textView;
+        this.touchOverlayView = new TouchOverlayView(context);
     }
 
     @Override
@@ -82,8 +88,29 @@ public class OpenCVProcessor implements CameraBridgeViewBase.CvCameraViewListene
                     coordinateTextView.setText(coordinates);
                 }
             });
+
+            // 处理激光笔光点的位置并模拟触摸事件
+            handleLaserPointTouch(laserPoint);
         }
 
         return rgbaMat;
+    }
+
+    private void handleLaserPointTouch(Point laserPoint) {
+        // 模拟触摸事件
+        long downTime = System.currentTimeMillis();
+        long eventTime = System.currentTimeMillis() + 100;
+        float x = (float) laserPoint.x;
+        float y = (float) laserPoint.y;
+
+        MotionEvent motionEvent = MotionEvent.obtain(
+                downTime, eventTime, MotionEvent.ACTION_DOWN, x, y, 0
+        );
+        touchOverlayView.dispatchTouchEvent(motionEvent);
+
+        motionEvent = MotionEvent.obtain(
+                downTime, eventTime, MotionEvent.ACTION_UP, x, y, 0
+        );
+        touchOverlayView.dispatchTouchEvent(motionEvent);
     }
 }
